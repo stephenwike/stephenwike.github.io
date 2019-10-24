@@ -65,6 +65,9 @@ You can now use the command `jekyll serve` inside the project folder to build an
 Following the jekyll docs I created a file structure like this: [^5]
 
 **root**  
+&nbsp;&nbsp;&nbsp;&nbsp;|-> _layouts  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| default.html  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| post.html  
 &nbsp;&nbsp;&nbsp;&nbsp;|-> _posts  
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| 2019-10-23-first-blog.md  
 &nbsp;&nbsp;&nbsp;&nbsp;|index.html  
