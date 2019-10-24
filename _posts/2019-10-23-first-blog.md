@@ -8,90 +8,57 @@ author: Stephen Wike
 ##### This is my first one!  Hopefully it's a good one.
 
 I have been meaning to start blogging for a long time and I kept putting it off because:
-> I want my personal website to look awesome first.
-> I want to have something special to blog about.
-> I want to make sure everything public is secure.
-> I dont want professionals seeing flaws in my code or logic.
-> etc. etc. etc.
 
-Really, the reason I haven't starting until now is I didn't see the value of getting feedback early and leaveraging that feedback to inform my processes.  That's all about to change! [^1]
+* I want my personal website to look awesome first.
+* I want to have something special to blog about.
+* I want to make sure everything public is secure.
+* I don't want professionals seeing flaws in my code or logic.
+* etc., etc., etc.
+
+Really, the reason I haven't starting until now is I didn't see the value of getting feedback early and leveraging that feedback to inform my processes.  Thanks to a good book and some motivation, that's all about to change! [^1]
 
 ## Why I started blogging
-Admittedly, this is not the first time I've tried to blog.  Most of my experience in blogging had been limited to exploration of the blogger service.  I had a _blogger.com_ and a _wordpress.com_ blogging website, but these were created a long time ago and I never used them as a dedicated source for blogging.  _Also, I didn't have much to say or write about at the time._  It was my intention to start blogging again, but I wanted to blog on my finished website; complete with all the bells and whistles.  I soon realized, being under a major research and rewrite, my site was not going to be published for quite a while.  Then, I had a revelation.  Why not take this research and rewrite opportunity to blog about what I'm learning and how I'm applying it to the development of my new site?  I would be priviledged to provide insight to my process for other developers to expand on and more importantly, get feedback on how to improve on what I've created. [^2]
+Admittedly, this is not the first time I've tried to blog.  Most of my experience in blogging had been limited to exploration of the blogger service.  I had a **_www.blogger.com_** and a **_www.wordpress.com_** blogging website, but these were created a long time ago and I never used them as a dedicated source for blogging.  _Also, I didn't have much to say or write about at the time._  It was my intention to start blogging again, but I wanted to blog on my finished website; complete with all the bells and whistles.  
+
+I soon realized, currently working a major rewrite with informed by months of research, my site was not going to be ready for quite a while.  Then, I had a revelation.  Why not take this research and rewrite opportunity to blog about what I'm learning and how I'm applying it to the development of my new site?  I could provide insight to my process for other developers to expand on and more importantly, get feedback on how to improve on what I've created. [^2]
 
 ## Finding A Blog Host
-The next step is to find a way to host my blog.  I wanted to find a way to hit the ground running.  First I bought my domain through _godaddy.com_ I looked into hosting my starter blog with Wordpress or Wix but both required payment for work I already knew how to do on my own.  I already have a server through _vultr.com_ on which I could host my site and it's relatively inexpensive.
+The next step was finding a way to host my new blog.  I wanted to find a way to hit the ground running.  I own my domain **_www.stephenwike.com_**  through **_www.godaddy.com_**.  Now I just need to find where do write and host my blogging content.
 
-## Setting Up My VPS (Virtual Private Server)
-### Installing and Setting Up a New Admin User
-I start by installing CentOS 7 on my server.  Next, I create a user account and give that account administrative permissions _(root priveledges)_. [^3]
+I looked into hosting my starter blog with **[Wordpress](www.wordpress.com)** or **[Wix](https://www.wix.com/)**.  I do have a personal server through **_www.vultr.com_** on which I could host my site and it's relatively inexpensive, however; I don't want to build the database, and infrastructure to manage my blog.
 
-```
-adduser mynewuser
-passwd mynewuser
-usermod -a -G wheel mynewuser
-su mynewuser
-```
+## Setting Up My Blog
 
-The first line adds a new user with the name _'mynewuser'_.  The second sets that user's password.  We can do this because we are in the root user for our operating system.  The system will prompt for two identical passwords to confirm user password.  The third line (_'-a'_) appends new user _'mynewuser'_ to the (_'-G'_) group _'wheel'_.   **wheel** is a defined group that have all system priveledges.  The fourth and final line switches to the new user.
+I started with setting up my WordPress profile.  I had to make some changes to the username and update the summary.  I also had to configure my comments and recycle an old abandoned blog to make this new one.  Setting up the blog was fairly straight forward.
 
-### Removing Login Access to the Root User
+While setting up my new blog website, I had to come up with a catchy name _(or at least one I felt was catchy)_.  I came up with The Contagious Coder as at least a temporary blog name.  It sounded better than "Stephen's Dumb Blog" anyway.  I was actually looking for a good synonym for _'sloppy'_ or _'disorganized'_ when I came across _'contagious'_.  
 
-Next, I want to disable login access to the root account.  I receive lots of failed in login attempts through the root account and since I'm a solo developer running administrative priveledges through my admin account, I don't need the root account to be accessible.  You may skip this part.  The easiest way is to change with root user's shell from _/bin/bash_ to _/sbin/nologin_.  I like to edit files with vim.
+It sounds to me like it could represent one of two characteristics.  A coder who is _'enthusiastic'_ and _'has infectious amounts of energy'_, which sounds nice, or a coder who _'infects everyone else with the cold flu'_.  I feel like this is appropriate too, given we already use morbid nomenclature such as _"virus"_, _"hack"_, _"bug"_, _"worm"_, _"terminal"_ and _"daemon"_, just to name a few.
 
-```
-sudo yum install vim -y
-sudo vim /etc/passwd
-```
+With the blog site set up, there was still another issue.  I couldn't write in **[Markdown Language](https://www.markdownguide.org/getting-started)!**  I generally prefer markdown because it works better for code documentation and it's used across many platforms including **[_www.github.com_](https://github.com/stephenwike)**.  I did solve my issue _(as you can probably tell)_.  The trick was going to the user dashboard and entering WP **Admin -> Settings -> Writing** and clicking the checkbox for **'Use Markdown for Post and Pages'** _(I also had to do this for comments)_.
 
-The first line installs vim text editor.  The second opens the passwd file in the etc directory.  Next change the line
-`root:x:0:0:root:/root:/bin/bash` to `root:x:0:0:root:/root:/sbin/nologin`
+This didn't fix the problem immediately.  I also discovered I needed to use the new **[Gutenberg Blocks Editor](https://wordpress.org/plugins/kioken-blocks/?gclid=Cj0KCQjwl8XtBRDAARIsAKfwtxDUelVnVnPUrhIDeSpAFAGhJEeVCzzYjQgV1HO6aIK39D5YKawZBo0aAjbiEALw_wcB)** before the markdown language content block became available.
 
-I test that I successfully disabled login by attempting to log in.  I receive _**'This account is currently not available.'**_  Success! 
+Now I'm finally writing this very blog! :D
 
-## Setting Up a Website for Blogging...
-##### And HARD STOP!!!
+## Forwarding My Domain
 
-Why am I doing all this to make a simple blogging website?  I'm still just building a website that I'll have to finish before I'm ready to start presenting my blog.  This is the problem I was trying to avoid.  I was looking back into paying for a blog website service when I came across github pages. [^4]
+Having the blog up and running is nice, but I'm not a huge fan of the URL you have to type to get to it. **_https://contagiouscoder.wordpress.com/_**.  I'd prefer to use my **_www.stephenwike.com_** domain name.
 
-### Setting Up Jekyll to Create a Static Blog Page
-Install Jekyl by following the installation instructions for your operating system here: _https://jekyllrb.com/docs/installation/_
+Fortunately this was very easy.  I signed into **_www.godaddy.com_** and clicked on the DNS hyperlink.  Near the bottom right of the website is a forwarding card that allowed me to specify DNS forwarding from my domain to my WordPress site.  This may be handled differently depending on your domain host.  A simple google search should give you steps to configure your own DNS forwarding.
 
-After installation.  Follow the instructions here to create and clone a repository into your local workspace.
-_https://pages.github.com/#user-site_
+This will be a good temporary fix while I'm developing the main website. Now I can post blog content and at least get some feedback while I begin the steps toward developing my site.
 
-You can now use the command `jekyll serve` inside the project folder to build and run the github pages content locally from your browser by navigating to `localhost:4000`
+## Next Steps
 
-Following the jekyll docs I created a file structure like this: [^5]
+Everything is up and running as expected.  The domain is temporarily tied to my WordPress blog until I have a chance to relocate the blog to my main website.  
 
-**root**  
-&nbsp;&nbsp;&nbsp;&nbsp;|-> _layouts  
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| default.html  
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| post.html  
-&nbsp;&nbsp;&nbsp;&nbsp;|-> _posts  
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| 2019-10-23-first-blog.md  
-&nbsp;&nbsp;&nbsp;&nbsp;|index.html  
+It's clear that it's not perfect, but I'm much closer to my goal than I was before.  First, I have a way for visitors to read content from my blog posts and they are able to make comments and leave feedback _(assuming they aren't filtered out by the commenting terms of agreement)_.
 
-Now, I just save my blogs in the *'_posts'* directory with the title format `year-month-day-title.md` and github pages takes care of the rest.
+Up ahead, I am getting into the weeds quickly and starting with **Deployment First**.  I know it sounds backwards, to start with deployment, but I'll be looking at Docker to determine my deployment strategy.  Hopefully that will allow for now surprises (or at least minimal) when it comes time to finally deploy my code.
 
-**Note:** _I'm skipping a few steps in this post as they are more about html design and not about getting started.  There are many tutorials on the web for creating html pages.  Everything else you need to know about using jekyll to setup github pages can be found the the jekyll docs._
+---
 
-It's clear that it's not perfect, but I'm much closer to my goal than I was before.  First, all I have is a way for visitors to read content from my blog posts.  I have no way of receiving comments and feedback to improve my processes in developing my website.  This will be a top priority for my next blog issue!
+[^1]: [Sonmez, John S.](https://simpleprogrammer.com/about-simple-programmer/) (2015). Soft Skills: The Software Developer's Life Manual. (ISBN: 1617292397):  This book contains a ton of useful strategies and must-know information for software developers.  John makes great statements regarding the importance of blogging for new and inexperienced developers.
 
-## Redirecting My Domain to GitHub Pages
-Although it's not my website on my VPS, I would temporarily like to redirect traffic from my new domain to the github pages blog I just created.  For me, I just had to create Domain Forwarding in the godaddy.com DNS Management page.  Now I can navigate to www.stephenwike.com and see my blog!
-
-
-[^1]: Sonmez, John S. (2015). Soft Skills: The Software Developer's Life Manual. (ISBN: 1617292397):
-This book contains a ton of useful strategies and must-know information for software developers.  John makes great statements regarding the importance of blogging for new and inexperienced developers.
-
-[^2]: Gene Kim, Patrick Debois, John Willis, Jez Humble (2016). The DevOps Handbook: How to Create World-class Agility, Reliability, and Security in Technology Organizations.  (ISBN 1942788002):
-This book contains useful information about devops best practices and examples of how these practices brought at-risk major software companies to success.  The importance of the feedback loop is drilled upon heavily throughout the chapters of this book.
-
-[^3]: https://www.tecmint.com/disable-root-login-in-linux/
-Setting up a new user with root priveledges on CentOS 7 and disabling the root user login.
-
-[^4]: https://pages.github.com/#user-site
-Setting up a brand new repository with an index.html file to start a github pages project.
-
-[^5]: https://jekyllrb.com/docs/step-by-step/01-setup/
+[^2]: Gene Kim, Patrick Debois, John Willis, Jez Humble (2016). The DevOps Handbook: How to Create World-class Agility, Reliability, and Security in Technology Organizations.  (ISBN 1942788002):  This book contains useful information about devops best practices and examples of how these practices brought at-risk major software companies to success.  The importance of the feedback loop is drilled upon heavily throughout the chapters of this book.
